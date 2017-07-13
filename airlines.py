@@ -45,6 +45,10 @@ class Airline:
         """Returns name of airline"""
         return self.name
 
+    def set_name(self, new_name):
+        """Sets name of airline"""
+        self.name = new_name
+
 class DemandFunction:
     """Class that generates a demand function"""
 
