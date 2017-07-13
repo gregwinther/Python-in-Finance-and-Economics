@@ -92,22 +92,26 @@ class AirlineMarket:
     def allocate_tickets(self):
         """Market clearing function"""
 
+        '''
         for airline in self.airlines:
             print(airline.get_price())
-
-        N = self.no_of_airlines 
+        '''
+     
         # Sorting prices by bubble sort
-        for i in range(N - 1):
-            if self.airlines[i].get_price() > self.airlines[i + 1].get_price():
-                temp1 = self.airlines[i]
-                temp2 = self.airlines[i + 1]
-                self.airlines[i] = temp1
-                self.airlines[i + 1] = temp2
-
-
+        swapped = True
+        while swapped:
+            swapped = False
+            for i in range(self.no_of_airlines - 1):
+                if self.airlines[i].get_price() > self.airlines[i + 1].get_price():
+                    temp1 = self.airlines[i]
+                    temp2 = self.airlines[i + 1]
+                    self.airlines[i] = temp2
+                    self.airlines[i + 1] = temp1
+                    swapped = True
+        '''
         for airline in self.airlines:
             print(airline.get_price())
-
+        '''
 
 if __name__ == "__main__":
 
@@ -115,7 +119,9 @@ if __name__ == "__main__":
 
     BA = Airline()
     IB = Airline()
+    DY = Airline()
 
+    DY.set_price(10)
     BA.set_price(20)
     IB.set_price(30)
 
@@ -123,5 +129,6 @@ if __name__ == "__main__":
 
     bertrand_market.add_airline(IB)
     bertrand_market.add_airline(BA)
+    bertrand_market.add_airline(DY)
 
     bertrand_market.allocate_tickets()
