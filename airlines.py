@@ -157,44 +157,44 @@ class AirlineMarket:
 
         print("--------------------")
         print("No of consumers: ", len(self.demand.get_demand()), "\n")
-       
+
         print("{:<15s} {:>13s} {:>13s} {:>13s}"\
         .format("Airline", "Capacity", "Seats left", "Ticket price"))
-        
+
         for airline in self.airlines:
             print("{:<15s} {:>13d} {:>13d} {:>13d}"\
             .format(airline.get_name(), airline.get_capacity(),\
             airline.get_seats_left(), airline.get_price()))
-        
+
         print("--------------------")
 
 if __name__ == "__main__":
 
-    BA = Airline()
-    IB = Airline()
-    DY = Airline()
+   # Creating new Airline object
+    british_airways = Airline()
 
-    DY.set_price(10)
-    BA.set_price(25)
-    IB.set_price(40)
+    # Setting attributes
+    british_airways.set_name("British Airways")
+    british_airways.set_capacity(100)
+    british_airways.set_price(50)
 
-    DY.set_capacity(50)
-    BA.set_capacity(50)
-    IB.set_capacity(50)
+    # Creating new Airline object
+    air_france = Airline("Air France", 120, 45)
 
-    DY.set_name("Norwegian")
-    BA.set_name("British Airways")
-    IB.set_name("Iberia")
+    # Creating a DemandFunction object. Argument is no of consumers
+    airline_demand = DemandFunction(150)
 
-    bertrand_market = AirlineMarket()
+    # Generate uniformly distributed demand
+    airline_demand.generate_uniform(20, 70)
 
-    uniform_demand = DemandFunction()
-    uniform_demand.generate_uniform(10,50)
+    # Creating AirlineMarket object
+    airline_market = AirlineMarket()
 
-    bertrand_market.set_demand(uniform_demand)
+    # Adding airlines and consumers to market
+    airline_market.add_airline(british_airways)
+    airline_market.add_airline(air_france)
+    airline_market.set_demand(airline_demand)
 
-    bertrand_market.add_airline(IB)
-    bertrand_market.add_airline(BA)
-    bertrand_market.add_airline(DY)
-
-    bertrand_market.allocate_tickets()
+    # Playing the game!
+    airline_market.allocate_tickets()
+    
