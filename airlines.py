@@ -156,9 +156,16 @@ class AirlineMarket:
             temp_demand = temp_demand[i: -1]
 
         print("--------------------")
+        print("No of consumers: ", len(self.demand.get_demand()), "\n")
+       
+        print("{:<15s} {:>13s} {:>13s} {:>13s}"\
+        .format("Airline", "Capacity", "Seats left", "Ticket price"))
+        
         for airline in self.airlines:
-            print("Airline: ", airline.get_name(),\
-            "Seats left: ", airline.get_seats_left(), " Price: ", airline.get_price())
+            print("{:<15s} {:>13d} {:>13d} {:>13d}"\
+            .format(airline.get_name(), airline.get_capacity(),\
+            airline.get_seats_left(), airline.get_price()))
+        
         print("--------------------")
 
 if __name__ == "__main__":
@@ -174,6 +181,10 @@ if __name__ == "__main__":
     DY.set_capacity(50)
     BA.set_capacity(50)
     IB.set_capacity(50)
+
+    DY.set_name("Norwegian")
+    BA.set_name("British Airways")
+    IB.set_name("Iberia")
 
     bertrand_market = AirlineMarket()
 
