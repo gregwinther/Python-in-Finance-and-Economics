@@ -72,7 +72,7 @@ class DemandFunction:
         """Sets demand"""
         self.demand = new_demand
 
-    def plot_demand(self):
+    def plot_demand(self, show=True):
         """Cummulates demand function and plots"""
 
         # Preparing
@@ -89,11 +89,13 @@ class DemandFunction:
             i += 1
 
         # Plotting
-        plt.plot(cummulative_demand, range(min_price, max_price))
+        plt.plot(cummulative_demand, range(min_price, max_price), label="Demand")
         plt.xlabel("Q")
         plt.ylabel("P")
         plt.title("Demand")
-        plt.show()
+
+        if show:
+            plt.show()
 
 class AirlineMarket:
     """Class that is supposed to match consumers with airlines"""
@@ -111,10 +113,27 @@ class AirlineMarket:
     def set_demand(self, demand):
         """Sets demand function"""
         self.demand = demand
-    
+
     def get_demand(self):
         """Returns demand object"""
         return self.demand
+
+    def plot_market(self):
+        """Plots demand function with airline prices"""
+
+        # Plotting demand
+        self.demand.plot_demand(False)
+
+        no_of_consumers = len(self.get_demand().get_demand())
+
+        # Plotting airline prices
+        for airline in self.airlines:
+            plt.plot((0, no_of_consumers), (airline.get_price(), airline.get_price()))
+            plt.text(1, airline.get_price() + 1, airline.get_name())
+
+        plt.title("Airline Market")
+        plt.legend()
+        plt.show()
 
     def allocate_tickets(self):
         """Market clearing function"""
@@ -200,3 +219,5 @@ if __name__ == "__main__":
 
     # Playing the game!
     airline_market.allocate_tickets()
+
+    airline_market.plot_market()
