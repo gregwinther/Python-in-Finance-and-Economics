@@ -151,7 +151,8 @@ class AirlineMarket:
 
                     if airline.get_price() < consumer_price:
                         airline.sell_ticket()
-                        i += 1
+
+                    i += 1
 
             temp_demand = temp_demand[i: -1]
 
@@ -197,4 +198,3 @@ if __name__ == "__main__":
 
     # Playing the game!
     airline_market.allocate_tickets()
-    
