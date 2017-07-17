@@ -179,11 +179,12 @@ if __name__ == "__main__":
     british_airways.set_capacity(100)
     british_airways.set_price(50)
 
-    # Creating new Airline object
+    # Creating new Airline objects
     air_france = Airline("Air France", 120, 45)
+    ryanair = Airline("Ryanair", 80, 35)
 
     # Creating a DemandFunction object. Argument is no of consumers
-    airline_demand = DemandFunction(150)
+    airline_demand = DemandFunction(200)
 
     # Generate uniformly distributed demand
     airline_demand.generate_uniform(20, 70)
@@ -194,6 +195,7 @@ if __name__ == "__main__":
     # Adding airlines and consumers to market
     airline_market.add_airline(british_airways)
     airline_market.add_airline(air_france)
+    airline_market.add_airline(ryanair)
     airline_market.set_demand(airline_demand)
 
     # Playing the game!
