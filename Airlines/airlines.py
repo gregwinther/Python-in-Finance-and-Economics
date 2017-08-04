@@ -178,13 +178,16 @@ class AirlineMarket:
         print("--------------------")
         print("No of consumers: ", len(self.demand.get_demand()), "\n")
 
-        print("{:<15s} {:>13s} {:>13s} {:>13s}"\
-        .format("Airline", "Capacity", "Seats left", "Ticket price"))
+        print("{:<15s} {:>13s} {:>13s} {:>13s} {:>13s}"\
+        .format("Airline", "Capacity", "Seats left", "Ticket price", "Revenue"))
 
         for airline in self.airlines:
-            print("{:<15s} {:>13d} {:>13d} {:>13d}"\
+            revenue = (airline.get_capacity() - airline.get_seats_left())\
+            * airline.get_price()
+
+            print("{:<15s} {:>13d} {:>13d} {:>13d} {:>13}"\
             .format(airline.get_name(), airline.get_capacity(),\
-            airline.get_seats_left(), airline.get_price()))
+            airline.get_seats_left(), airline.get_price(), revenue))
 
         print("--------------------")
 
